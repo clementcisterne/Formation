@@ -1,0 +1,148 @@
+
+
+									///////////////////////////////////////
+									// Développement application Android //
+									///////////////////////////////////////	
+
+
+
+open source, gratuit dans la mesure du possible, facile à développer, facile à vendre, flexible et ingénieux.
+
+// Facile à développer
+
+	Les API facilitent et accélère grandement le travail, sont complètent et facile d'accès.
+	Une API (Interface de Programmation) est un ensemble de règle à suivre poru dialoguer avec d'autres applications.
+
+	exemple : Demander à Google Maps d'afficher la carte de Paris (quelles méthodes, paramètres, retours ?)
+
+
+// Pré-requis 
+
+	- JDK
+	- Android Studio / Android SDK / Driver
+
+
+// Premiere application
+
+	// Activity
+
+		Une activité est un support sur lequel nous alons greffer une interface graphique, mais ce n'est pas son rôle de la créer, elle n'est que l'echafaudage sur lequel vont s'inserer les objets graphiques. 
+		Elle va établir les liens entre l'interface graphique et le logique
+
+		Les activités héritent de la classe Activity. Or, la classe Activity hérite de l'interface Context dont le but est de représenter les composants d'une application.
+		On les trouve dans le package android.app.Activity
+		
+		Un package est un répertoire qui permet d'organiser le code source en différenciant les différentes classes qui auraient le même nom : on organise les classes celons une hiérarchie.
+
+		exemple de package : Web.Affichage.Image, Web.Affichage.Video et Web.Telechargement
+
+
+	// Context
+
+		Le context contient les informations sur l'etat actuel de l'application, il constitue le lien avec le systeme Android et les autres activités de l'application
+
+		Activity = Context + Interface graphique 
+
+
+	// Etat d'une activité (active / paused / stopped)
+
+		- A tout moment une application peux laisser place à une autre (prioritee)
+
+		- Une activité existera dans plusieur états au cours de sa vie 
+
+		 >>> La pile d'activité (LIFO) 
+
+
+	// Cycle de vie d'une activitée
+
+
+	 							   <L'activité démarre>
+	 										|
+	 										|
+	 			-------------------> 	onCreate()
+	 			|							|
+	l'utilisateur retourne	 				|
+	vers l'activité						onStart()     <-------------------- onRestart()
+				|							|									|			  
+				|							|									|			  
+	<Le processus est tué>				onResume()----------------------------	|			  		 
+				|							|								 |	|             
+				|							|								 |	|			  
+				|					<l'activité s'exécute>					 |	|			  
+				|							|								 |	|			  
+				|							|			  					 |	|			  
+				|				Une autre activité s'intercale		L'activité revient		  
+				|					devant notre activitée             sur le devant		  
+				|							|							de la scène           
+				|							|								 |	|			  
+	D'autres applications  ------------ onPause() ----------------------------  |			  
+	ont besoin de mémoire					|									|
+				|							|									|
+				|			   Notre activité n'est plus visible				|
+				|							|									|
+				|							|									|
+				------------------------ onStop() ------------------------------- 
+											|
+											|
+										onDestroy()
+											|
+											|
+								 <L'activité est arrêtée>
+
+
+	// Les vues
+
+		Il s'agit de l'unité de base de l'interface graphique, elle doivent fournir du contenu visuel avec lequel on peut interagir.
+		Les vues héritent de la classe View. On les trouve dans le package android.view.View.
+
+
+
+
+
+
+// Les ressources 
+
+	Les ressources ne contiennent pas de code et ne sont pas dynamique, elle permette de s'adapter à la situation.
+
+	exemple : préparer différent formats d'image, préparer les textes pour différentes langues ...
+
+	// Format XML
+
+		<?xml version="1.0" encoding="utf-8"?>
+
+
+	// Différents types de ressources
+
+		Images				  XML| res/drawable | Images matricielles (PNG,JPEG,GIF ..) / vectorielles
+		Mise en page 		  XML| res/layout   | XML de la disposition des vues
+		Menu 				  XML| res/menu 	| XML pour contituer les menus
+		Donnée Brute	  pas XML| res/raw		| Données au format brut (musique, HTML)
+		Différentes variables XML| res/values	| Nombreuse (variables standards, chaine de char, dimensions)
+
+
+/!\		Ne pas mettre de ressources directement dans res/, sinon erreur de compilation !
+	
+
+	// L'organisation
+
+		Les quantificateurs servent à préciser le matériel pour lequel les fichiers du repertoire sont destinés
+		res/<type_de_ressource>[<-quantificateur 1><-quantificateur 2>…<-quantificateur N>]
+
+		exemple :
+
+			- langue/région     	| 2		| en, fr, fr-rFR, fr-rCA 
+			- taille de l'écran		| 3		| samll, normal, large, xlarge
+			- orientation écran		| 5		| port, land
+			- résolution écran		| 8 	| 
+			- version Android 		| 14 	|
+
+
+
+	// Ajouter une ressource avec Android Studio
+
+
+	// Récupérer une ressource
+
+
+//Constitution interface graphique
+
