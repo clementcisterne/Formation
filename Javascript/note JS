@@ -1,0 +1,97 @@
+					
+
+											//////////////////
+											//	JavaScript	//
+											//////////////////
+
+
+__________________________________________________________________________________________________
+// AJAX (Asynchronous JavaScript and XML)
+
+	//Présentation
+
+		Ensemble de technologies pour réaliser de rapides mises à jour du contenu d'une page Web
+		
+		Le transfert de données est géré exclusivement par le JavaScript, et utilise certaines technologies de formatage de données, (XML ou le JSON)
+		
+		L'AJAX est un vaste domaine, dans le sens où les manières de charger un contenu sont nombreuses.
+
+	//Fonctionnement
+
+		- L’auto-complétion ! 
+		Exmeple : interaction avec le serveur sans recharger la page
+
+		- La sauvegarde automatique des textes !
+		Sauvegarde transparente sans recharger la page
+
+	Et c'est là que réside l'intérêt de l'AJAX : les requêtes doivent être rapides		
+
+
+	//Utilisation
+
+		- Les formats classiques | il n'y a aucun traitement à effectuer
+		- Le XML
+		
+		- Le JSON	
+
+			var obj = { index: 'contenu' },
+			string;
+			string = JSON.stringify(obj);		   // retourne son équivalent sous forme de chaîne de caractères.
+			alert(typeof string + ' : ' + string); // Affiche : « string : {"index":"contenu"} »
+			obj = JSON.parse(string); 			   // retourne le résultat sous forme d'objet JSON ;
+			alert(typeof obj + ' : ' + obj); 	   // Affiche : « object : [object Object] »
+
+	//En résumé
+
+		- Dans une requête AJAX, les deux formats de données plébiscités sont le XML et le JSON. Mais les données au format texte sont permises.
+
+____________________________________________________________________________________________________
+// XMLHTTPREQUEST
+
+	// Présentation
+
+		version 1 : supporté par tous
+
+		version 2 : nouvelles fonctionnalités (moins supporté) : ignorer IE9
+
+
+	// Première version : les bases
+
+		1. Prépare
+			var hrx = new XMLHTTPRequest();
+			xhr.open('GET','xhr.open('GET', 'http://mon_site_web.com/ajax.php', true);
+			xhr.send(null);
+
+		2. Réception (les propriété différent selon que la requête est synchrone ou non)
+
+			- une fonctiton de callback sur l'evenement readystatechange (état de la requête)
+
+			xhr.addEventListener('readystatechange', function() {
+    			// Votre code…
+			}, false);
+
+			- Il existe 5 états (propriété readyState)
+				- UNSET				0  	Objet XHR créé
+				- OPENED			1	Appel de open()
+				- HEADER_RECEIVED	2	Appel de send()
+				- LOADING			3	Traitement des info apr le serveur
+				- DONE 				4	Toutes els données sont réceptionnées
+
+			xhr.addEventListener('readystatechange', function() {
+			    if (xhr.readyState === xhr.DONE) { // La constante DONE appartient à l'objet XMLHttpRequest, elle n'est pas globale
+			        // Votre code…
+			    }
+			}, false);
+
+
+
+
+
+
+
+
+
+
+
+
+

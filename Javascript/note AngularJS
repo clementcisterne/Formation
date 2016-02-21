@@ -1,0 +1,27 @@
+note AngularJS
+
+
+// Concept
+
+	- MVC
+	- Data Binding
+	- Injection de dépencance : Ne plus se soucier d'instancier les dépendances des modules
+	- Manipulation du DOM au moyen de directive
+
+// Cmd instal
+	
+	npm install -g bower
+	npm install -g yo
+	npm install -g gennerator-angular
+	mkdir workspace; mkdir workspace\first-app; cd workspace\first-app; 
+	yo angular
+
+// Les fichiers de configuration
+
+	- package.json
+	- bower.json
+	- Gruntfile.js (Un task runner)
+
+	Jquery :
+		- bower install jquery
+		- npm install jquery --save (affecter la dépendance)

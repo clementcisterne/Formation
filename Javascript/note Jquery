@@ -1,0 +1,300 @@
+											************
+											*  JQUERY  *
+											************
+	
+______________________________________________________________________________________________
+Difficulté de créer un code qui s'exécute de façon similaire sur les différents navigateurs
+--> Technique de detection des fonctionnalitées supportées par chaque navigateur
+______________________________________________________________________________________________
+
+/ HTML /
+	Voila
+
+/ CSS /
+	Voila
+
+/ Javascript / coté client
+
+/ Ajax / 
+	Premet de mettre a jour une partie de la page
+	Limite les échanges Clients/Serveurs
+	Affiche les page + rapidement
+
+/ Jquery /
+	Bibliothèque conçue pour simplifier le code Js et AJAX
+	Permet de manipuler les éléments HTML et la mise en forme
+
+
+______________________________________________________________________________________________
+// Glossaire
+
+	DOM
+
+	Le Document Object Model est une structure de données qui représente un document HTML comme une arborescence. La racine de cet arbre est un nœud nommé document qui correspond grossièrement à la balise <html>. Tout aussi grossièrement, les balises HTML définies dans la page Web correspondent aux nœuds de l'arbre DOM et en constituent la structure. Le langage jQuery est en mesure d'interroger le DOM pour connaître les caractéristiques (attributs et valeurs HTML, propriétés et valeurs CSS) des balises qui constituent un document HTML, mais aussi de modifier ces éléments pour changer l'allure et/ou le contenu du document.
+
+
+______________________________________________________________________________________________
+// Fonctionnement de base de JQuery
+
+jQuery repose sur une seule et unique fonction : jQuery(), ou son alias, $(). 
+Cette fonction accepte un ou plusieurs paramètres et retourne un objet que nous appellerons « objet jQuery ». 
+
+Les paramètres peuvent être d'un des types suivants :
+
+    Une fonction, qui sera exécutée dès que le DOM est disponible. Cette technique est très largement utilisée par tous les programmeurs jQuery.
+
+    Un sélecteur CSS : l'élément (ou les éléments) qui correspondent au sélecteur sont retournés. Nous allons nous intéresser à cette technique dans ce chapitre.
+
+    Un élément HTML, un document ou l'objet window : un objet jQuery correspondant à cet élément est retourné.
+
+    Une (ou plusieurs) balise(s) HTML : un objet jQuery correspondant à cette (ces) balise(s) est retourné. Vous pouvez lui appliquer des méthodes jQuery, par exemple pour ajouter cette (ces) balise(s) dans un élément HTML.
+
+
+						......................................
+						::									::
+						:: 		 Selection d'Elements 		::
+						::..................................::
+
+
+______________________________________________________________________________________________
+// Selecteur d'elements
+
+	ul 			$('ul')			Les balises <ul>
+	ul.bleu		$('ul.bleu') 	Les balises <ul> de la classe bleu	
+	div ul 		$('div ul')		Les balises <ul> contenu dans la balise <div>
+	li[class]	$('li[class]')	Les baliselises <li> qui possede un attribut class
+	* 			$('*')			Toutes les balises du document		
+
+______________________________________________________________________________________________
+// Objets Jquery 
+
+	Le résultat retourné par la fonction $() est un objet jQuery. 
+	Cet objet ressemble à un tableau : il a une propriété length et les éléments sélectionnés peuvent être accédés par un indice. 
+
+	Par exemple :
+		$('a').length retourne le nombre de liens hypertextes contenus dans la page
+		$('a')[0] retourne le premier lien hypertexte de la page.
+		$('a[class="nav"]').length ...
+
+______________________________________________________________________________________________
+// Appliquer une méthode à la selection
+
+	$(sélecteur).action
+
+	Par exemple :
+		$('#resultat').html('texte à écrire dans la balise span');
+
+______________________________________________________________________________________________
+// Fonction de rappel (ou callback en anglais)
+
+	Une fonction exécutée lorsqu'une autre fonction a terminé de s'exécuter. 
+	Les fonctions de rappel sont essentiellement utilisées pour réaliser des animations et des appels AJAX.
+
+$(function() {
+    $(".rouge").fadeOut("slow",function(){
+    	$(this).fadeIn("slow");
+    }); 
+});
+
+
+______________________________________________________________________________________________
+// Chainage de méthodes
+
+	$('.rouge').css('background','red');
+	$('.rouge').css('color','yellow');
+
+  = $('.rouge').css('background','red').css('color','yellow');
+
+
+______________________________________________________________________________________________
+// Selecteurs d'attributs
+
+	['nom*="valeur"'] : Éléments qui possèdent un attribut nom qui contient (partiellement ou 
+						totalement) la valeur spécifiée.
+
+	['nom~="valeur"'] : Éléments qui possèdent un attribut nom qui contient la valeur spécifiée, 
+						délimité par des espaces
+
+	['nom$="valeur"'] : Éléments qui possèdent un attribut nom qui se termine par la valeur 
+						spécifiée.
+	
+	['nom^="valeur"'] : Éléments qui possèdent un attribut nom qui commence par la valeur spécifiée
+
+	['nom!="valeur"'] : Éléments qui ne possèdent pas l'attribut nom, ou qui possèdent un attribut
+						nom différent de la valeur spécifiée.
+
+
+______________________________________________________________________________________________
+// Selecteurs hiérarchiques
+
+	Dans l'arborescence DOM, à l'exception de html, tous les éléments ont un parent, et certains éléments ont un ou plusieurs enfants. 
+
+	('p > e')			Éléments e directement descendants d'éléments p
+
+	('p + e')			Éléments e directement précédés d'un élément p
+
+	('p ~ e')			Éléments e précédés d'un élément p
+
+	:empty				Éléments qui n'ont pas d'enfant
+
+	:first-child		Premier enfant
+
+	:first 				Premier élément
+
+	:last-child			Denier enfant
+
+	:last 				Le dernier élement de la selection
+	
+	:nth-child() 		Elément qui est l'énième enfant de son parent
+
+	:only-child()		Elément qui sont enfant uniques de leur parent
+
+	
+______________________________________________________________________________________________
+// Pseudo-sélecteurs d'éléments sélectionnés
+
+	 En ajoutant un pseudo-sélecteur au sélecteur, vous allez pouvoir filtrer la sélection en ne conservant que les éléments pairs, impairs, ayant un certain index, etc.
+
+	 :even		Elements pairs
+
+	 :odd 		Eléments impairs
+
+	 :eq()		2lément dont l'index est spécifié
+
+	 :gt()		Eléments dont l'index est supèrieur à l'index spécifié (greater than)
+
+	 :lt() 		Element dont l'index est infèrieur à l'index spécifié (lower than)
+
+
+______________________________________________________________________________________________
+// Selecteurs d'éléments particuliers
+
+	:header		Tous les titres <h1> à <h6>
+
+	:hidden		Elements cachés
+
+	:visible	Elements visibles
+
+	:not()		Éléments qui ne correspondent pas au sélecteur spécifié
+
+	par exemple:
+		$(':header').css('color','red');
+		$('div:hidden').show();
+		$(':header:not(h1)').hide();
+
+______________________________________________________________________________________________
+// Pseudo-sélécteurs spécifiques aux formulaires
+
+	:input		Tous les éléments de type input, textarea, select et button
+
+	:button		Éléments de type button
+
+	:checkbox	Éléments de type checkbox
+
+	:checked	Éléments qui sont cochés
+
+	:radio		Éléments de type radio
+
+	:reset 		Éléments de type reset
+
+	:image 		Tous les boutons de type image
+
+	:submit 	Éléments de type submit
+
+	:text 		Éléments de type text
+
+	:password 	Éléments de type password
+
+	:selected 	Éléments sélectionnés
+
+	:focus 		Sélectionne l'élément s'il a le focus
+
+	:enabled 	Éléments validés
+
+	par exemple:
+		$(':input').css('background','yellow');
+		$(':password').css('background','yellow');
+		$(':image').css('width','100px');
+		document.forms[0].nom.focus(); $(':focus').css('background','yellow');
+
+
+______________________________________________________________________________________________
+// Sélecteurs utilisés dans les tableaux 
+
+	$('td:first');		La premère cellule
+	$('tr:last');		La dernière ligne
+	$('td:empty'); 		les cellules vides
+
+
+______________________________________________________________________________________________
+// Parcourrir les éléments selectionnés en utilisant la méthode each().
+
+	$(function() {
+        $('img').each(function(index){
+          this.src = 'images2/i' + (index+1) + '.jpg';
+        });  
+      }); 
+ 
+
+______________________________________________________________________________________________
+// Conversion jQuery/DOM
+
+
+	- Conversion d'un élément du DOM en un objet jQuery
+		$('div')
+		$("div")[0]
+
+
+	- Conversion d'un objet jQuery en un élément du DOM
+		Plusieurs balises <span>, il est possible de les convertir en un tableau JavaScript :
+		
+			var spans = $('span').get();
+
+		Ici, le tableau est stocké dans la variable JavaScript spans. La valeur stockée dans la première cellule du tableau est obtenue avec spans[0].innerHTML
+
+
+	- Conversion d'une variable JavaScript en un objet jQuery
+		var variableJS = 'un simple texte';
+		var variableJQ = $(variableJS);
+		
+		La première ligne crée une variable JavaScript en lui affectant un simple texte. La deuxième la convertit en un objet jQuery en « l'enveloppant » avec l'alias $().
+
+
+
+						......................................
+						::									::
+						:: Modifier le contenu d'un élément ::
+						::..................................::
+
+
+
+______________________________________________________________________________________________
+// Guetters et setters
+
+get : $('h2').css('font-size');
+set : $('h2').css('font-size','2em'); //renvoie undefined si null
+ 
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
